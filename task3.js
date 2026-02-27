@@ -17,11 +17,24 @@ function sort_numbers(arr) {
     return arr.slice().sort((a, b) => a - b);
 }
 
+function mod_5(numbers) {
+    return numbers.map(num => num % 5);
+}
+
 // task3_1
 input = prompt("Введите натуральные числа");
 if (input != null) {
     let numbers = parse_list(input);
     if (numbers === null) alert("Некорректный ввод!");
     else alert(sort_numbers(numbers).join(", "));    
+}
+else alert("Ввод отменён.");
+
+// task3_2
+input = prompt("Введите натуральные числа");
+if (input != null) {
+    let numbers = parse_list(input);
+    if (numbers === null) alert("Некорректный ввод!");
+    else alert(mod_5(numbers).join(", "));    
 }
 else alert("Ввод отменён.");
