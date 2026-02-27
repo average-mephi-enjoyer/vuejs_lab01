@@ -1,5 +1,15 @@
 const months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
 
+const Counter = {
+    count: 0,
+    add: function(value) {
+        this.count += value;
+    },
+    sub: function(value) {
+        this.count -= value;
+    }
+};
+
 function is_prime(num) {
     if (num < 2) return false;
     if (num === 2) return true;
@@ -42,3 +52,25 @@ if (input != null){
         alert(primes.join(" "));
     }
 }
+
+alert("Начальное значение: " + Counter.count);
+input = prompt("Введите число для добавления:");
+if (input !== null) {
+    let add_value = parseFloat(input);
+    if (!isNaN(add_value)) {
+        Counter.add(add_value);
+        alert("Результат: " + Counter.count);
+    }
+    else alert("Некорректный ввод!");
+} 
+else alert("Операция отменена!");
+input = prompt("Введите число для вычитания:");
+if (input !== null) {
+    let sub_value = parseFloat(input);
+    if (!isNaN(sub_value)) {
+        Counter.sub(sub_value);
+        alert("Результат: " + Counter.count);
+    }
+    else alert("Некорректный ввод!");
+} 
+else alert("Операция отменена!");
