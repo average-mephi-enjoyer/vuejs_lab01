@@ -17,8 +17,18 @@ function sort_numbers(arr) {
     return arr.slice().sort((a, b) => a - b);
 }
 
+// task3_2
 function mod_5(numbers) {
     return numbers.map(num => num % 5);
+}
+
+// task3_3
+function median(...numbers) {
+    if (numbers.length === 0) return undefined;
+    let sorted = [...numbers].sort((a, b) => a - b);
+    let mid_ind = Math.floor(sorted.length / 2);
+    if (sorted.length % 2 === 0) return (sorted[mid_ind - 1] + sorted[mid_ind]) / 2;
+    else return sorted[mid_ind];
 }
 
 // task3_1
@@ -36,5 +46,17 @@ if (input != null) {
     let numbers = parse_list(input);
     if (numbers === null) alert("Некорректный ввод!");
     else alert(mod_5(numbers).join(", "));    
+}
+else alert("Ввод отменён.");
+
+
+// task3_3
+let classic = median(5, 2, 9, 5, 2);
+alert(`median(5, 2, 9, 5, 2) = ${classic}`);
+input = prompt("Введите натуральные числа через запятую");
+if (input !== null){
+    let arr = parse_list(input);
+    if (arr != null) alert(`Медиана равна ${median(...arr)}`);
+    else alert("Некорректный ввод!");
 }
 else alert("Ввод отменён.");
