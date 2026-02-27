@@ -26,7 +26,7 @@ class Stack {
     }
 }
 
-// common input
+// common input 3_{1..3}
 function parse_list(input) {
     if (!input || input.trim() === '') return null;
     let parts = input.split(',').map(part => part.trim());
@@ -73,6 +73,44 @@ function check_bracket_sequence(str) {
     return stack.empty();
 }
 
+// task3_5
+function copy_obj(obj, copied = new WeakMap()) {
+    if (obj === null || typeof obj !== 'object') return obj;
+    if (copied.has(obj)) return copied.get(obj);
+
+    let copy;
+    if (Array.isArray(obj)) {
+        copy = [];
+        copied.set(obj, copy);                  // new object
+        for (let i = 0; i < obj.length; i++) {  // deep copy transmission
+            copy[i] = copy_obj(obj[i], copied);
+        }
+    }
+    else if (obj instanceof Date) copy = new Date(obj);
+    else if (obj instanceof RegExp) copy = new RegExp(obj);
+    else if (obj instanceof Map) {
+        copy = new Map();
+        copied.set(obj, copy);  // new object
+        obj.forEach((value, key) => {       // deep copy transmission
+            copy.set(copy_obj(key, copied), copy_obj(value, copied));
+        });
+    }
+    else if (obj instanceof Set) {
+        copy = new Set();
+        copied.set(obj, copy);
+        obj.forEach(value => {      // deep copy transmission
+            copy.add(copy_obj(value, copied));
+        });
+    }
+    else {
+        copy = Object.create(Object.getPrototypeOf(obj));
+        copied.set(obj, copy);
+        for (let key in obj)
+            if (obj.hasOwnProperty(key)) copy[key] = copy_obj(obj[key], copied);    // собственное св-во, не ссылка
+    }
+    return copy;
+}
+
 // task3_1
 input = prompt("Введите натуральные числа");
 if (input != null) {
@@ -105,3 +143,5 @@ else alert("Ввод отменён.");
 // task3_4
 input = prompt("Enter brackets sequence");
 if (input !== null) alert(check_bracket_sequence(input) ? "Правильная" : "Неправильная");
+
+
