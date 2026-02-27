@@ -111,6 +111,19 @@ function copy_obj(obj, copied = new WeakMap()) {
     return copy;
 }
 
+
+function safe_json(obj) {
+    const seen = new WeakSet();
+    return JSON.stringify(obj, (key, value) => {
+        if (typeof value === 'object' && value !== null) {
+            if (seen.has(value)) return '[Circular]';
+            seen.add(value);
+        }
+        return value;
+    }, 2);
+}
+
+/*
 // task3_1
 input = prompt("Введите натуральные числа");
 if (input != null) {
@@ -143,5 +156,19 @@ else alert("Ввод отменён.");
 // task3_4
 input = prompt("Enter brackets sequence");
 if (input !== null) alert(check_bracket_sequence(input) ? "Правильная" : "Неправильная");
-
-
+*/
+// task3_5
+let test = {
+    name: "test",
+    numbers: [1, 2, 3],
+    date: new Date(),
+    self: null
+};
+test.self = test;
+let copy = copy_obj(test);
+alert("Оригинал:\n" + safe_json(test));
+alert("Копия:\n" + safe_json(copy));
+alert("Содержимое одинаково?\n" + 
+      (JSON.stringify(test, (k, v) => typeof v === 'object' && v !== null ? '[Object]' : v) === 
+       JSON.stringify(copy, (k, v) => typeof v === 'object' && v !== null ? '[Object]' : v) ? "Да" : "Нет"));
+alert("Объекты разные? " + (test !== copy ? "Да" : "Нет"));
