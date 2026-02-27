@@ -32,6 +32,13 @@ function get_first_primes(n) {
 }
 
 
+function is_palindrome(str) {
+    const cleaned = str.replace(/[^a-zA-Zа-яёА-ЯЁ0-9]/g, '').toLowerCase();
+    const reversed = cleaned.split('').reverse().join('');
+    return cleaned === reversed;
+}
+
+
 let input = prompt("Введите номер месяца (1-12)");
 if (input != null) {
     let monthNumber = parseInt(input, 10);
@@ -79,3 +86,11 @@ input = prompt("Введите слова через запятую");
 if (input === null) alert("Ввод отменён.");
 else if (input.trim() === "") alert("Вы ничего не ввели.");
 else alert("Результат: " + input.replace(/,/g, '.'));
+
+
+input = prompt("Введите строку, проверим, палиндром ли она");
+if (input != null) {
+    if (is_palindrome(input)) alert("Да");
+    else alert("Нет");
+}
+else alert("Ввод отменён.");
