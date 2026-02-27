@@ -32,7 +32,7 @@ function get_first_primes(n) {
 }
 
 
-let input = prompt("Введите номер месяца (1-12):");
+let input = prompt("Введите номер месяца (1-12)");
 if (input != null) {
     let monthNumber = parseInt(input, 10);
     if (!isNaN(monthNumber) && Number.isInteger(monthNumber) && monthNumber >= 1 && monthNumber <= 12) {
@@ -54,7 +54,7 @@ if (input != null){
 }
 
 alert("Начальное значение: " + Counter.count);
-input = prompt("Введите число для добавления:");
+input = prompt("Введите число для добавления");
 if (input !== null) {
     let add_value = parseFloat(input);
     if (!isNaN(add_value)) {
@@ -64,7 +64,7 @@ if (input !== null) {
     else alert("Некорректный ввод!");
 } 
 else alert("Операция отменена!");
-input = prompt("Введите число для вычитания:");
+input = prompt("Введите число для вычитания");
 if (input !== null) {
     let sub_value = parseFloat(input);
     if (!isNaN(sub_value)) {
@@ -74,3 +74,8 @@ if (input !== null) {
     else alert("Некорректный ввод!");
 } 
 else alert("Операция отменена!");
+
+input = prompt("Введите слова через запятую");
+if (input === null) alert("Ввод отменён.");
+else if (input.trim() === "") alert("Вы ничего не ввели.");
+else alert("Результат: " + input.replace(/,/g, '.'));
