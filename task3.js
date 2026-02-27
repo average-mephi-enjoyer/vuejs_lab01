@@ -1,3 +1,31 @@
+// task3_4
+class Stack {
+    constructor() {
+        this.items = [];
+        this.head = -1;
+    }
+
+    push(value) {
+        this.head++;
+        this.items[this.head] = value;
+    }
+
+    pop() {
+        if (this.empty()) return undefined;
+        let value = this.items[this.head];
+        this.head--;
+        return value;
+    }
+
+    empty() {
+        return this.head === -1;
+    }
+
+    size() {
+        return this.head + 1;
+    }
+}
+
 // common input
 function parse_list(input) {
     if (!input || input.trim() === '') return null;
@@ -31,6 +59,20 @@ function median(...numbers) {
     else return sorted[mid_ind];
 }
 
+// task3_4
+function check_bracket_sequence(str) {
+    let stack = new Stack();
+    for (let char of str) {
+        if (char === '(') stack.push(char);
+        else if (char === ')') {
+            if (stack.empty()) return false;
+            stack.pop();
+        } 
+        else return false;
+    }
+    return stack.empty();
+}
+
 // task3_1
 input = prompt("Введите натуральные числа");
 if (input != null) {
@@ -49,7 +91,6 @@ if (input != null) {
 }
 else alert("Ввод отменён.");
 
-
 // task3_3
 let classic = median(5, 2, 9, 5, 2);
 alert(`median(5, 2, 9, 5, 2) = ${classic}`);
@@ -60,3 +101,7 @@ if (input !== null){
     else alert("Некорректный ввод!");
 }
 else alert("Ввод отменён.");
+
+// task3_4
+input = prompt("Enter brackets sequence");
+if (input !== null) alert(check_bracket_sequence(input) ? "Правильная" : "Неправильная");
