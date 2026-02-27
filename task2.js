@@ -1,5 +1,7 @@
+// task2_1 array
 const months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
 
+// task2_4 class
 const Counter = {
     count: 0,
     add: function(value) {
@@ -10,6 +12,7 @@ const Counter = {
     }
 };
 
+// task2_3
 function is_prime(num) {
     if (num < 2) return false;
     if (num === 2) return true;
@@ -20,7 +23,7 @@ function is_prime(num) {
     return true;
 }
 
-
+// task2_3
 function get_first_primes(n) {
     let primes = [];
     let num = 2;
@@ -31,25 +34,22 @@ function get_first_primes(n) {
     return primes;
 }
 
-
+//task2_6
 function is_palindrome(str) {
     const cleaned = str.replace(/[^a-zA-Zа-яёА-ЯЁ0-9]/g, '').toLowerCase();
     const reversed = cleaned.split('').reverse().join('');
     return cleaned === reversed;
 }
 
-
+//task2_2
 let input = prompt("Введите номер месяца (1-12)");
 if (input != null) {
     let monthNumber = parseInt(input, 10);
-    if (!isNaN(monthNumber) && Number.isInteger(monthNumber) && monthNumber >= 1 && monthNumber <= 12) {
-        alert(months[monthNumber - 1]);
-    }
-    else {
-        alert("Некорректный номер месяца");
-    }
+    if (!isNaN(monthNumber) && Number.isInteger(monthNumber) && monthNumber >= 1 && monthNumber <= 12) alert(months[monthNumber - 1]);
+    else alert("Некорректный номер месяца");
 }
 
+// task2_3
 input = prompt("Введите количество простых чисел");
 if (input != null){
     let n = parseInt(input, 10);
@@ -60,6 +60,7 @@ if (input != null){
     }
 }
 
+// task2_4
 alert("Начальное значение: " + Counter.count);
 input = prompt("Введите число для добавления");
 if (input !== null) {
@@ -82,12 +83,13 @@ if (input !== null) {
 } 
 else alert("Операция отменена!");
 
+// task2_5
 input = prompt("Введите слова через запятую");
 if (input === null) alert("Ввод отменён.");
 else if (input.trim() === "") alert("Вы ничего не ввели.");
 else alert("Результат: " + input.replace(/,/g, '.'));
 
-
+// task2_6
 input = prompt("Введите строку, проверим, палиндром ли она");
 if (input != null) {
     if (is_palindrome(input)) alert("Да");
