@@ -77,7 +77,6 @@ function check_bracket_sequence(str) {
 function copy_obj(obj, copied = new WeakMap()) {
     if (obj === null || typeof obj !== 'object') return obj;
     if (copied.has(obj)) return copied.get(obj);
-
     let copy;
     if (Array.isArray(obj)) {
         copy = [];
@@ -123,7 +122,7 @@ function safe_json(obj) {
     }, 2);
 }
 
-/*
+
 // task3_1
 input = prompt("Введите натуральные числа");
 if (input != null) {
@@ -156,7 +155,7 @@ else alert("Ввод отменён.");
 // task3_4
 input = prompt("Enter brackets sequence");
 if (input !== null) alert(check_bracket_sequence(input) ? "Правильная" : "Неправильная");
-*/
+
 // task3_5
 let test = {
     name: "test",
