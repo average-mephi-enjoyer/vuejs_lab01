@@ -92,7 +92,8 @@ else alert("Результат: " + input.replace(/,/g, '.'));
 // task2_6
 input = prompt("Введите строку, проверим, палиндром ли она");
 if (input != null) {
-    if (is_palindrome(input)) alert("Да");
+    if (input === "") alert("Пустая строка");
+    else if (is_palindrome(input)) alert("Да");
     else alert("Нет");
 }
 else alert("Ввод отменён.");
