@@ -122,52 +122,82 @@ function safe_json(obj) {
     }, 2);
 }
 
-
-// task3_1
-input = prompt("Введите натуральные числа");
-if (input != null) {
-    let numbers = parse_list(input);
-    if (numbers === null) alert("Некорректный ввод!");
-    else alert(sort_numbers(numbers).join(", "));    
+function dialog_sort(){
+    let input = prompt("Введите натуральные числа");
+    if (input != null) {
+        let numbers = parse_list(input);
+        if (numbers === null) alert("Некорректный ввод!");
+        else alert(sort_numbers(numbers).join(", "));    
+    }
+    else alert("Ввод отменён.");
 }
-else alert("Ввод отменён.");
 
-// task3_2
-input = prompt("Введите натуральные числа");
-if (input != null) {
-    let numbers = parse_list(input);
-    if (numbers === null) alert("Некорректный ввод!");
-    else alert(mod_5(numbers).join(", "));    
+
+function dialog_mod(){
+    input = prompt("Введите натуральные числа");
+    if (input != null) {
+        let numbers = parse_list(input);
+        if (numbers === null) alert("Некорректный ввод!");
+        else alert(mod_5(numbers).join(", "));    
+    }
+    else alert("Ввод отменён.");
 }
-else alert("Ввод отменён.");
 
-// task3_3
-let classic = median(5, 2, 9, 5, 2);
-alert(`median(5, 2, 9, 5, 2) = ${classic}`);
-input = prompt("Введите натуральные числа через запятую");
-if (input !== null){
-    let arr = parse_list(input);
-    if (arr != null) alert(`Медиана равна ${median(...arr)}`);
-    else alert("Некорректный ввод!");
+
+function dialog_median(){
+    let classic = median(5, 2, 9, 5, 2);
+    alert(`median(5, 2, 9, 5, 2) = ${classic}`);
+    input = prompt("Введите натуральные числа через запятую");
+    if (input !== null){
+        let arr = parse_list(input);
+        if (arr != null) alert(`Медиана равна ${median(...arr)}`);
+        else alert("Некорректный ввод!");
+    }
+    else alert("Ввод отменён.");
 }
-else alert("Ввод отменён.");
 
-// task3_4
-input = prompt("Enter brackets sequence");
-if (input !== null) alert(check_bracket_sequence(input) ? "Правильная" : "Неправильная");
 
-// task3_5
-let test = {
-    name: "test",
-    numbers: [1, 2, 3],
-    date: new Date(),
-    self: null
-};
-test.self = test;
-let copy = copy_obj(test);
-alert("Оригинал:\n" + safe_json(test));
-alert("Копия:\n" + safe_json(copy));
-alert("Содержимое одинаково?\n" + 
-      (JSON.stringify(test, (k, v) => typeof v === 'object' && v !== null ? '[Object]' : v) === 
-       JSON.stringify(copy, (k, v) => typeof v === 'object' && v !== null ? '[Object]' : v) ? "Да" : "Нет"));
-alert("Объекты разные? " + (test !== copy ? "Да" : "Нет"));
+function dialog_brackets(){
+    input = prompt("Enter brackets sequence");
+    if (input !== null) alert(check_bracket_sequence(input) ? "Правильная" : "Неправильная");
+}
+
+
+function dialog_copy(){
+    let test = {
+        name: "test",
+        numbers: [1, 2, 3],
+        date: new Date(),
+        self: null
+    };
+    test.self = test;
+    let copy = copy_obj(test);
+    alert("Оригинал:\n" + safe_json(test));
+    alert("Копия:\n" + safe_json(copy));
+    alert("Содержимое одинаково?\n" + 
+        (JSON.stringify(test, (k, v) => typeof v === 'object' && v !== null ? '[Object]' : v) === 
+        JSON.stringify(copy, (k, v) => typeof v === 'object' && v !== null ? '[Object]' : v) ? "Да" : "Нет"));
+    alert("Объекты разные? " + (test !== copy ? "Да" : "Нет"));
+}
+
+
+// НАЧАЛО ВЫПОЛНЕНИЯ ЗДЕСЬ!!!
+while (true) {
+    let choice = prompt(`
+        Выберите задание:
+        1: сортировка массива чисел;
+        2: вывод остатков по модулю 5;
+        3: вывод медианы функции;
+        4: анализ скобочной последовательности;
+        5: копирование объекта;
+        0: завершить работу со страницей.
+        `);
+    if (choice === null) break;
+    choice = choice.trim();
+    if (choice === "") continue;
+    if (choice === "0") break;
+
+    const funcs = { 1: dialog_sort, 2: dialog_mod, 3: dialog_median, 4: dialog_brackets, 5: dialog_copy };
+    if (funcs[choice]) funcs[choice]();
+    else alert("Некорректный выбор!");
+  }

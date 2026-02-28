@@ -142,7 +142,7 @@ while (true) {
     if (choice === "") continue;
     if (choice === "0") break;
 
-    const tasks = { 1: dialog_months, 2: dialog_primes, 3: dialog_counter, 4: dialog_sep, 5: dialog_pal };
-    if (tasks[choice]) tasks[choice]();
+    const funcs = { 1: dialog_months, 2: dialog_primes, 3: dialog_counter, 4: dialog_sep, 5: dialog_pal };
+    if (funcs[choice]) funcs[choice]();
     else alert("Некорректный выбор!");
   }
