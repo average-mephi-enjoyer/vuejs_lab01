@@ -68,28 +68,42 @@ function dialog_primes(){
 
 // task2_4
 function dialog_counter(){
-    alert("Начальное значение: " + Counter.count);
-    let input = prompt("Введите число для добавления");
-    if (input !== null) {
-        let add_value = parseFloat(input);
-        if (!isNaN(add_value)) {
-            Counter.add(add_value);
-            alert("Результат: " + Counter.count);
+    let input, choice;
+    while (true){
+        alert("Текущее значение: " + Counter.count);
+        choice = prompt(`Выберите опцию:
+            1: добавить число;
+            2: вычесть число;
+            0: завершить работу со счётчиком.
+            `)
+        if (choice === null) break;
+        choice = choice.trim();
+        if (choice === "") continue;
+        if (choice === "0") break;
+        if (choice === "1"){
+            input = prompt("Введите число для добавления");
+            if (input !== null) {
+                let add_value = parseFloat(input);
+                if (!isNaN(add_value)) {
+                    Counter.add(add_value);
+                    alert("Результат: " + Counter.count);
+                }
+            }
+            else alert("Некорректный ввод!")
+        } 
+        else if (choice === "2"){
+            input = prompt("Введите число для вычитания");
+            if (input !== null) {
+                let sub_value = parseFloat(input);
+                if (!isNaN(sub_value)) {
+                    Counter.sub(sub_value);
+                    alert("Результат: " + Counter.count);
+                }
+            }
+            else alert("Некорректный ввод!"); 
         }
-        else alert("Некорректный ввод!");
-    } 
-    else alert("Операция отменена!");
-
-    input = prompt("Введите число для вычитания");
-    if (input !== null) {
-    let sub_value = parseFloat(input);
-    if (!isNaN(sub_value)) {
-        Counter.sub(sub_value);
-        alert("Результат: " + Counter.count);
+        else alert("Некорректный ввод!")
     }
-    else alert("Некорректный ввод!");
-    } 
-    else alert("Операция отменена!");
 }
 
 // task2_5
@@ -121,8 +135,8 @@ while (true) {
         3: работа с объектом Counter;
         4: разделение слов точками;
         5: проверка слова на палиндром;
-        0: завершить работу со страницей;
-      `);
+        0: завершить работу со страницей.
+        `);
     if (choice === null) break;
     choice = choice.trim();
     if (choice === "") continue;
